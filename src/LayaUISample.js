@@ -395,7 +395,7 @@ function p3() {
 	})
 
 	function pop2Ani(){
-		// Tween.to(self.p3_t1,{scaleX:1,scaleY:1}, 700, Ease.backOut, null, 200);
+		Tween.to(self.p3_t1,{scaleX:1,scaleY:1}, 700, Ease.backOut, null, 200);
 		Tween.to(self.p3_t2,{scaleX:1,scaleY:1}, 700, Ease.backOut, Handler.create(self, function(){
 			self.p3_next.visible=true
 		}), 500);
@@ -509,7 +509,7 @@ function p5() {
 			if(t1<0){
 				clearInterval(overTime)
 				if(isWeibo){
-					window.location.replace('https://api.weibo.com/oauth2/authorize?client_id=3144981223&redirect_uri=http%3A%2F%2F6yn2xj.cn&scope=snsapi_base&state=1KjdrgZ')
+					window.location.replace('https://detail.m.tmall.hk/item.htm?spm=a1z10.1-b-s.w5001-21930027555.3.33b826b4rPEL6w&id=599467619814&scene=taobao_shopl.m.tmall.hk/item.htm?spm=a1z10.1-b-s.w5001-21930027555.3.33b826b4rPEL6w&id=599467619814&scene=taobao_shop')
 				}else{
 					Laya.stage.addChildAt(new p7(),zindex+1);
 				}
@@ -641,8 +641,8 @@ function p6() {
 		if(t2<0){
 			clearInterval(p2Time)
 			if(isWeibo){
-				// window.location.replace('https://detail.m.tmall.hk/item.htm?spm=a212k0.12153887.0.0.4e60687dAU40Vd&id=626354588997')
-				window.location.replace('https://api.weibo.com/oauth2/authorize?client_id=3144981223&redirect_uri=http%3A%2F%2F6yn2xj.cn&scope=snsapi_base&state=1Kjd33k')
+				window.location.replace('https://detail.m.tmall.hk/item.htm?spm=a212k0.12153887.0.0.4e60687dAU40Vd&id=626354588997')
+				// window.location.replace('https://api.weibo.com/oauth2/authorize?client_id=3144981223&redirect_uri=http%3A%2F%2F6yn2xj.cn&scope=snsapi_base&state=1Kjd33k')
 				// window.location.href='https://api.weibo.com/oauth2/authorize?client_id=3144981223&redirect_uri=http%3A%2F%2F6yn2xj.cn&scope=snsapi_base&state=1Kjd33k'
 			}else{
 				Laya.stage.addChildAt(new p7(),zindex+1);
