@@ -27,6 +27,22 @@ var u = navigator.userAgent, app = navigator.appVersion;
 var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
 var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 
+var os  = function(){
+	var u = navigator.userAgent;
+	var u2 = navigator.userAgent.toLowerCase();
+	return { //移动终端版本信息
+		mobile: !!u.match(/(iPhone|iPod|Android|ios|Mobile)/i), //是否为移动终端
+		pc: !u.match(/(iPhone|iPod|Android|ios|Mobile)/i), //是否为pc终端
+		ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //是否为ios终端
+		android: u.indexOf('Android') > -1, //是否为android终端
+		weixin: u2.match(/MicroMessenger/i) == "micromessenger", //是否为微信客户端
+		newsapp: u.indexOf('NewsApp') > -1,//是否为网易新闻客户端
+		yixin: u.indexOf('YiXin') > -1,//易信客户端
+		weibo: u.indexOf('weibo') > -1,//微博客户端
+		yunyuedu:u.indexOf('PRIS') > -1 //云阅读客户端
+	};
+};
+
 document.body.addEventListener('focusout', function () {
 	if (isAndroid) return
 	var currentPosition,timer;
@@ -135,7 +151,7 @@ var scaleRateW
 //y缩放比例=舞台高度/设计高度
 var scaleRateH
 //token
-var token = getRequestParams('token')||''
+var token = os().weibo?getRequestParams('token'):''
 // 当前层级
 var zindex = 0
 // 试用已结束
@@ -509,7 +525,7 @@ function p5() {
 			if(t1<0){
 				clearInterval(overTime)
 				if(isWeibo){
-					window.location.replace('https://detail.m.tmall.hk/item.htm?spm=a1z10.1-b-s.w5001-21930027555.3.33b826b4rPEL6w&id=599467619814&scene=taobao_shop')
+					window.location.replace('https://detail.m.tmall.hk/item.htm?spm=a1z10.1-b-s.w5001-21930027555.3.33b826b4rPEL6w&id=599467619814&scene=taobao_shopl.m.tmall.hk/item.htm?spm=a1z10.1-b-s.w5001-21930027555.3.33b826b4rPEL6w&id=599467619814&scene=taobao_shop')
 				}else{
 					Laya.stage.addChildAt(new p7(),zindex+1);
 				}
@@ -762,21 +778,7 @@ var stageH = document.body.clientHeight / s
 stageH<1289?Laya.init(750, 1500):Laya.init(750, 1500,Laya.WebGL)
 //缩放模式
 // full,,pc=showall
-var os  = function(){
-	var u = navigator.userAgent;
-	var u2 = navigator.userAgent.toLowerCase();
-	return { //移动终端版本信息
-		mobile: !!u.match(/(iPhone|iPod|Android|ios|Mobile)/i), //是否为移动终端
-		pc: !u.match(/(iPhone|iPod|Android|ios|Mobile)/i), //是否为pc终端
-		ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //是否为ios终端
-		android: u.indexOf('Android') > -1, //是否为android终端
-		weixin: u2.match(/MicroMessenger/i) == "micromessenger", //是否为微信客户端
-		newsapp: u.indexOf('NewsApp') > -1,//是否为网易新闻客户端
-		yixin: u.indexOf('YiXin') > -1,//易信客户端
-		weibo: u.indexOf('weibo') > -1,//微博客户端
-		yunyuedu:u.indexOf('PRIS') > -1 //云阅读客户端
-	};
-};
+
 os().pc?Laya.stage.scaleMode='showall':Laya.stage.scaleMode='fixedwidth'
 //自动竖屏
 // Laya.stage.screenMode = "vertical";
