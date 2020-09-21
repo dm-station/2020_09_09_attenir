@@ -229,6 +229,7 @@ function p1() {
 		success : function(res) {
 			if(res.code==0){
 				res.data===1?isOver=true:isOver=false
+				// isOver=true
 			}else{
 				alert(res.msg);
 			}
@@ -527,8 +528,10 @@ function p5() {
 			if(t1<0){
 				clearInterval(overTime)
 				if(isWeibo){
-					window.location.replace('https://detail.m.tmall.hk/item.htm?spm=a1z10.1-b-s.w5001-21930027555.3.33b826b4rPEL6w&id=599467619814&scene=taobao_shopl.m.tmall.hk/item.htm?spm=a1z10.1-b-s.w5001-21930027555.3.33b826b4rPEL6w&id=599467619814&scene=taobao_shop')
-				}else{
+					// window.location.replace('https://detail.m.tmall.hk/item.htm?spm=a1z10.1-b-s.w5001-21930027555.3.33b826b4rPEL6w&id=599467619814&scene=taobao_shopl.m.tmall.hk/item.htm?spm=a1z10.1-b-s.w5001-21930027555.3.33b826b4rPEL6w&id=599467619814&scene=taobao_shop')
+					window.location.replace('https://detail.m.tmall.hk/item.htm?spm=a212k0.12153887.0.0.4e60687dJqAtgC&id=626354588997')
+					
+			}else{
 					Laya.stage.addChildAt(new p7(),zindex+1);
 				}
 				return
