@@ -165,7 +165,8 @@ var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
 if (ua.match(/MicroMessenger/i) == "micromessenger") {
 	//在微信中打开
 }
-if (ua.match(/WeiBo/i) == "weibo") {
+console.log('os().pc',os().pc)
+if (ua.match(/WeiBo/i) == "weibo"||os().pc) {
 	//在新浪微博客户端打开
 	isWeibo=true
 }
