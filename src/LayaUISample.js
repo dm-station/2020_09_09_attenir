@@ -151,7 +151,7 @@ var scaleRateW
 //y缩放比例=舞台高度/设计高度
 var scaleRateH
 //token
-var token = os().weibo?getRequestParams('token'):''
+var token = ''
 // 当前层级
 var zindex = 0
 // 试用已结束
@@ -170,6 +170,7 @@ if (ua.match(/WeiBo/i) == "weibo"||os().pc) {
 	//在新浪微博客户端打开
 	isWeibo=true
 }
+token = isWeibo?getRequestParams('token'):''
 
 function p1() {
 	p1UI.super(this);
