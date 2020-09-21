@@ -27,6 +27,22 @@ var u = navigator.userAgent, app = navigator.appVersion;
 var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Linux') > -1; //g
 var isIOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
 
+var os  = function(){
+	var u = navigator.userAgent;
+	var u2 = navigator.userAgent.toLowerCase();
+	return { //移动终端版本信息
+		mobile: !!u.match(/(iPhone|iPod|Android|ios|Mobile)/i), //是否为移动终端
+		pc: !u.match(/(iPhone|iPod|Android|ios|Mobile)/i), //是否为pc终端
+		ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //是否为ios终端
+		android: u.indexOf('Android') > -1, //是否为android终端
+		weixin: u2.match(/MicroMessenger/i) == "micromessenger", //是否为微信客户端
+		newsapp: u.indexOf('NewsApp') > -1,//是否为网易新闻客户端
+		yixin: u.indexOf('YiXin') > -1,//易信客户端
+		weibo: u.indexOf('weibo') > -1,//微博客户端
+		yunyuedu:u.indexOf('PRIS') > -1 //云阅读客户端
+	};
+};
+
 document.body.addEventListener('focusout', function () {
 	if (isAndroid) return
 	var currentPosition,timer;
@@ -135,7 +151,7 @@ var scaleRateW
 //y缩放比例=舞台高度/设计高度
 var scaleRateH
 //token
-var token = getRequestParams('token')||''
+var token = ''
 // 当前层级
 var zindex = 0
 // 试用已结束
@@ -149,10 +165,12 @@ var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
 if (ua.match(/MicroMessenger/i) == "micromessenger") {
 	//在微信中打开
 }
-if (ua.match(/WeiBo/i) == "weibo") {
+console.log('os().pc',os().pc)
+if (ua.match(/WeiBo/i) == "weibo"||os().pc) {
 	//在新浪微博客户端打开
 	isWeibo=true
 }
+token = isWeibo?getRequestParams('token'):''
 
 function p1() {
 	p1UI.super(this);
@@ -395,7 +413,7 @@ function p3() {
 	})
 
 	function pop2Ani(){
-		// Tween.to(self.p3_t1,{scaleX:1,scaleY:1}, 700, Ease.backOut, null, 200);
+		Tween.to(self.p3_t1,{scaleX:1,scaleY:1}, 700, Ease.backOut, null, 200);
 		Tween.to(self.p3_t2,{scaleX:1,scaleY:1}, 700, Ease.backOut, Handler.create(self, function(){
 			self.p3_next.visible=true
 		}), 500);
@@ -509,7 +527,7 @@ function p5() {
 			if(t1<0){
 				clearInterval(overTime)
 				if(isWeibo){
-					window.location.replace('https://api.weibo.com/oauth2/authorize?client_id=3144981223&redirect_uri=http%3A%2F%2F6yn2xj.cn&scope=snsapi_base&state=1KjdrgZ')
+					window.location.replace('https://detail.m.tmall.hk/item.htm?spm=a1z10.1-b-s.w5001-21930027555.3.33b826b4rPEL6w&id=599467619814&scene=taobao_shopl.m.tmall.hk/item.htm?spm=a1z10.1-b-s.w5001-21930027555.3.33b826b4rPEL6w&id=599467619814&scene=taobao_shop')
 				}else{
 					Laya.stage.addChildAt(new p7(),zindex+1);
 				}
@@ -641,8 +659,8 @@ function p6() {
 		if(t2<0){
 			clearInterval(p2Time)
 			if(isWeibo){
-				// window.location.replace('https://detail.m.tmall.hk/item.htm?spm=a212k0.12153887.0.0.4e60687dAU40Vd&id=626354588997')
-				window.location.replace('https://api.weibo.com/oauth2/authorize?client_id=3144981223&redirect_uri=http%3A%2F%2F6yn2xj.cn&scope=snsapi_base&state=1Kjd33k')
+				window.location.replace('https://detail.m.tmall.hk/item.htm?spm=a212k0.12153887.0.0.4e60687dAU40Vd&id=626354588997')
+				// window.location.replace('https://api.weibo.com/oauth2/authorize?client_id=3144981223&redirect_uri=http%3A%2F%2F6yn2xj.cn&scope=snsapi_base&state=1Kjd33k')
 				// window.location.href='https://api.weibo.com/oauth2/authorize?client_id=3144981223&redirect_uri=http%3A%2F%2F6yn2xj.cn&scope=snsapi_base&state=1Kjd33k'
 			}else{
 				Laya.stage.addChildAt(new p7(),zindex+1);
@@ -762,21 +780,7 @@ var stageH = document.body.clientHeight / s
 stageH<1289?Laya.init(750, 1500):Laya.init(750, 1500,Laya.WebGL)
 //缩放模式
 // full,,pc=showall
-var os  = function(){
-	var u = navigator.userAgent;
-	var u2 = navigator.userAgent.toLowerCase();
-	return { //移动终端版本信息
-		mobile: !!u.match(/(iPhone|iPod|Android|ios|Mobile)/i), //是否为移动终端
-		pc: !u.match(/(iPhone|iPod|Android|ios|Mobile)/i), //是否为pc终端
-		ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //是否为ios终端
-		android: u.indexOf('Android') > -1, //是否为android终端
-		weixin: u2.match(/MicroMessenger/i) == "micromessenger", //是否为微信客户端
-		newsapp: u.indexOf('NewsApp') > -1,//是否为网易新闻客户端
-		yixin: u.indexOf('YiXin') > -1,//易信客户端
-		weibo: u.indexOf('weibo') > -1,//微博客户端
-		yunyuedu:u.indexOf('PRIS') > -1 //云阅读客户端
-	};
-};
+
 os().pc?Laya.stage.scaleMode='showall':Laya.stage.scaleMode='fixedwidth'
 //自动竖屏
 // Laya.stage.screenMode = "vertical";
