@@ -780,7 +780,8 @@ var s = document.body.clientWidth / 750
 var stageH = document.body.clientHeight / s
 
 //程序入口
-stageH<1289?Laya.init(750, 1500):Laya.init(750, 1500,Laya.WebGL)
+stageH<1289?Laya.init(750,1500,Laya.WebGL):Laya.init(750,1500,Laya.WebGL)
+
 //缩放模式
 // full,,pc=showall
 
@@ -795,6 +796,7 @@ Laya.stage.alignV='top';
 // 背景颜色
 Laya.stage.bgColor='#fff';
 //背景透明
+// Config.isAlpha = true;//设置画布是否透明，只对2D(WebGL)、3D有效。
 // Laya.Render.isWebGL ? Laya.stage.bgColor = "none" : Laya.stage.bgColor = null;
 
 var assets = [
