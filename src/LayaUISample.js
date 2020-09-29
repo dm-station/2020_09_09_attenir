@@ -10,7 +10,7 @@ document.addEventListener("WeixinJSBridgeReady", function () {
 		// document.getElementById('audio').pause();
 	});
 }, false);
-var audio=document.getElementById("audio");
+var audio = document.getElementById("audio");
 audio.addEventListener('ended', function () {
 	audio.play()
 	setTimeout(function () {audio.play(); }, 10);
